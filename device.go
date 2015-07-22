@@ -36,7 +36,10 @@ func NewReceiver(host string) (*Device, error) {
 
 // Close connection
 func (d *Device) Close() error {
-	return d.conn.Close()
+	if d.conn != nil {
+		return d.conn.Close()
+	}
+	return nil
 }
 
 // ReadMessage - read raw eISCP message
